@@ -45,7 +45,6 @@ CREATE TABLE Player.pack(
 	description	VARCHAR2(50),
 	weight		NUMBER(3),
 	quantity	NUMBER(5),
-	CONSTRAINT player_pack_item_play_pk PRIMARY KEY(itemID,playerID),
-	CONSTRAINT player_pack_itemID_fk
-);
-
+	CONSTRAINT itemID_playerID_pk PRIMARY KEY(itemID,playerID),
+	CONSTRAINT player_pack_itemID_fk FOREIGN KEY REFERENCES items.all(itemID),
+	CONSTRAINT player_pack_playerID_fk FOREIGN KEY REFERENCES Player.character(playerID));
