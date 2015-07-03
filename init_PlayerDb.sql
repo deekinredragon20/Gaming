@@ -26,7 +26,7 @@ CREATE TABLE Player.stats(
  	wisdomMod		NUMBER(2) DEFAULT(-1),
  	charismaMod		NUMBER(2) DEFAULT(-1),
  	CONSTRAINT player_stats_statsID_pk PRIMARY KEY (statsID),
- 	CONSTRAINT player_stats_playerID_fk FOREIGN KEY REFERENCES Player.character(playerID));
+ 	CONSTRAINT player_stats_playerID_fk FOREIGN KEY(playerID) REFERENCES Player.character(playerID));
 
 CREATE TABLE Player.skills(
 	skillID			NUMBER(9) PRIMARY KEY,
@@ -36,7 +36,7 @@ CREATE TABLE Player.skills(
 	classSkill		CHAR(1) DEFAULT('N'),
 	synergyBonus	NUMBER(2) DEFAULT(0),
 	CONSTRAINT Player_skills_skillID_pk PRIMARY KEY(skillID),
-	CONSTRAINT Player_skills_playerID_fk FOREIGN KEY REFERENCES Player.character(playerID));
+	CONSTRAINT Player_skills_playerID_fk FOREIGN KEY(playerID) REFERENCES Player.character(playerID));
 
 CREATE TABLE Player.pack(
 	itemID		NUMBER(9) FOREIGN KEY,
@@ -46,5 +46,5 @@ CREATE TABLE Player.pack(
 	weight		NUMBER(3),
 	quantity	NUMBER(5),
 	CONSTRAINT itemID_playerID_pk PRIMARY KEY(itemID,playerID),
-	CONSTRAINT player_pack_itemID_fk FOREIGN KEY REFERENCES items.all(itemID),
-	CONSTRAINT player_pack_playerID_fk FOREIGN KEY REFERENCES Player.character(playerID));
+	CONSTRAINT player_pack_itemID_fk FOREIGN KEY(itemID) REFERENCES items.all(itemID),
+	CONSTRAINT player_pack_playerID_fk FOREIGN KEY(playerID) REFERENCES Player.character(playerID));
