@@ -1,4 +1,4 @@
-Create Table Player.character(
+CREATE TABLE Player.character(
 	playerID		NUMBER(9) PRIMARY KEY,
 	name			VARCHAR2(20) NOT NULL,
 	age				NUMBER(3) DEFAULT(1),
@@ -25,5 +25,15 @@ CREATE TABLE Player.stats(
  	intelligenceMod	NUMBER(2) DEFAULT(-1),
  	wisdomMod		NUMBER(2) DEFAULT(-1),
  	charismaMod		NUMBER(2) DEFAULT(-1),
- 	CONSTRAINT player_stats_statsID_pk PRIMARY KEY,
+ 	CONSTRAINT player_stats_statsID_pk PRIMARY KEY (statsID),
  	CONSTRAINT player_stats_playerID_fk FOREIGN KEY REFERENCES Player.character(playerID));
+
+CREATE TABLE Player.skills(
+	skillID		NUMBER(9) PRIMARY KEY,
+	playerID 	NUMBER(9) FOREIGN KEY,
+	skillName	VARCHAR2(20),
+	rank		NUMBER(3) DEFAULT(0),
+	classSkill	CHAR(1) DEFAULT('N'),
+	CONSTRAINT Player_skills_skillID_pk PRIMARY KEY(skillID),
+	CONSTRAINT Player_skills_playerID_fk FOREIGN KEY REFERENCES Player.character(playerID));
+
